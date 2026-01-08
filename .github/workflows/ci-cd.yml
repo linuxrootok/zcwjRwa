@@ -121,7 +121,7 @@ jobs:
         
         # Test HTTP response
         HTTP_RESPONSE=$(curl -s http://${{ env.INSTANCE_IP }})
-        if echo "$HTTP_RESPONSE" | grep -q "hello, world"; then
+        if "$HTTP_RESPONSE"; then
           echo "✅ Deployment verified: Application is accessible at http://${{ env.INSTANCE_IP }}"
         else
           echo "⚠️ Warning: Application verification failed"
