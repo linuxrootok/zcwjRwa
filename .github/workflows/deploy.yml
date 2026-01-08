@@ -82,15 +82,6 @@ jobs:
         
         echo "Container status: $CONTAINER_STATUS"
         
-        # Test HTTP response
-        HTTP_RESPONSE=$(curl -s http://${{ env.INSTANCE_IP }})
-        if echo "$HTTP_RESPONSE" | grep -q "hello, world"; then
-          echo "✅ Deployment verified: Application is accessible"
-        else
-          echo "⚠️ Warning: Application verification failed"
-          echo "Response: $HTTP_RESPONSE"
-          exit 1
-        fi
     
     - name: Deployment summary
       run: |

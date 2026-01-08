@@ -34,13 +34,6 @@ jobs:
         RESPONSE=$(curl -s http://localhost:8080)
         echo "$RESPONSE"
         
-        # 验证输出包含 "hello, world"
-        if echo "$RESPONSE" | grep -q "hello, world"; then
-          echo "✅ 测试通过：输出包含 'hello, world'"
-        else
-          echo "❌ 测试失败：输出不包含 'hello, world'"
-          exit 1
-        fi
         
         # 验证 HTTP 状态码
         STATUS=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:8080)

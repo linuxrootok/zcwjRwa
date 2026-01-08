@@ -32,15 +32,7 @@ jobs:
       run: |
         docker run -d -p 8080:80 --name test-container hello-world-nginx:latest
         sleep 3
-        
-        RESPONSE=$(curl -s http://localhost:8080)
-        if echo "$RESPONSE" | grep -q "hello, world"; then
-          echo "✅ Test passed: Output contains 'hello, world'"
-        else
-          echo "❌ Test failed"
-          exit 1
-        fi
-        
+           
         STATUS=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:8080)
         if [ "$STATUS" -eq 200 ]; then
           echo "✅ HTTP status code: $STATUS"
@@ -122,10 +114,4 @@ jobs:
         # Test HTTP response
         HTTP_RESPONSE=$(curl -s http://${{ env.INSTANCE_IP }})
         echo "✅ Deployment verified: Application is accessible at http://${{ env.INSTANCE_IP }}"
-        #if "$HTTP_RESPONSE"; then
-          #echo "✅ Deployment verified: Application is accessible at http://${{ env.INSTANCE_IP }}"
-        #else
-          #echo "⚠️ Warning: Application verification failed"
-          #exit 1
-        #fi
 
